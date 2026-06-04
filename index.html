@@ -8,6 +8,35 @@
 
     <title>Place-Anything-Anywhere: A Lightweight Robot Agnostic Goal Generator</title>
 
+    <!-- <meta name="description"
+        content=""> -->
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <link rel="icon" href="./static/images/favicon.svg">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+
+    <script src="./static/js/bulma-carousel.min.js"></script>
+
+    <script src="./static/js/bulma-slider.min.js"></script>
+
+    <!-- <script src="./static/js/index.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/PLYLoader.js"></script>
+
 </head>
 
 <body>
@@ -19,7 +48,7 @@
                 <div class="columns is-centered" style="margin-bottom: 0;">
                     <div class="column has-text-centered">
                         <h1 class="title is-1 publication-title" style="margin-bottom: 0;">
-                            Website will be up soon!
+                            Place-Anything-Anywhere: A Lightweight Robot Agnostic Goal Generator
                         </h1>
                         <br>
                     </div>
@@ -27,7 +56,340 @@
             </div>
     </section>
 
-   
+    <section class="section" style="padding-top:0.5rem; padding-bottom:0.5rem;">
+        <div class="container is-max-desktop">
+
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+
+                    <div class="buttons is-centered are-medium">
+
+                        <a href="#abstract" class="button is-dark">
+                            <span class="icon"><i class="fas fa-file-alt"></i></span>
+                            <span>Abstract</span>
+                        </a>
+
+                        <a href="#method" class="button is-dark">
+                            <span class="icon"><i class="fas fa-cogs"></i></span>
+                            <span>How It Works</span>
+                        </a>
+
+                        <a href="#video" class="button is-dark">
+                            <span class="icon"><i class="fas fa-video"></i></span>
+                            <span>Video</span>
+                        </a>
+
+                        <a href="#results" class="button is-dark">
+                            <span class="icon"><i class="fas fa-chart-line"></i></span>
+                            <span>Results</span>
+                        </a>
+
+                        <a href="#results" class="button is-dark">
+                            <span class="icon"><i class="fas fa-cogs"></i></span>
+                            <span>Colab Notebook</span>
+                        </a>
+
+                        <a href="https://github.com/placeanythinganywhere/PlaceAnythingAnywhere" class="button is-dark">
+                            <span class="icon"><i class="fas fa-cogs"></i></span>
+                            <span>Code: Github</span>
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="hero teaser" style="padding-top: 1rem; margin-top: 0%;">
+        <div class="container is-max-desktop" style="padding-top: 1rem; margin-top: 0%;">
+            <div class="hero-body" style="padding-top: 1rem; margin-top: 0%;">
+
+                <!-- <video style="border: 3px solid #000; border-radius: 8px;" id="teaser" controls autoplay loop playsinline height="100%">
+                    <source src="./static/imgs/video.mp4" type="video/mp4">
+                </video> -->
+
+                <img src="./static/imgs/maindiag.jpg" alt="Pipeline Overview" style="width:100%; height:auto;">
+
+                <p style="max-width:900px; margin:auto; margin-top:15px; text-align:justify;">
+                    <b>Overview of Place-Anything-Anywhere,</b> a language-guided 6-DoF object placement framework.
+                    Scene RGBD, object RGBD, and text instructions are processed through perception and language-conditioning
+modules to extract semantic, spatial, and relational embeddings. These representations are fused using a Q-
+Former reasoning module, and the resulting latent representation is used by the placement head to predict the
+final 6-DoF object placement within the reconstructed scene.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="abstract" style="padding-top: 0rem;">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column ">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            While natural language has emerged as a powerful interface for robotic
+manipulation, translating open-vocabulary instructions into precise physical ac-
+tions remains a persistent challenge. Recent trends often favor end-to-end Vision-
+Language-Action (VLA) systems that directly map visual and textual inputs to
+continuous robot trajectories. While highly capable, these architectures can incur
+substantial computational costs. In this work, we argue that for fundamental rigid-
+body manipulation—such as everyday pick-and-place and scene rearrangement-
+simply establishing the accurate geometric goal pose of the object prior to execu-
+tion is enough for task completion.<br>
+                            To this end, we present a lightweight framework designed specifically for
+language-conditioned object relocation. Our system takes a source object RGB-
+D, a target RGB-D scene, and a natural language instruction, and outputs the
+goal positioning of the object. Unlike large VLA systems, our approach focuses
+strictly on multimodal geometric reasoning and goal generation. By treating ob-
+ject grounding and segmentation as modular front-end components, our architec-
+ture efficiently fuses language intent with 3D scene structure to predict precise
+manipulation goals without requiring massive parameter counts. This provides
+a scalable, robot-agnostic interface for downstream motion planning, offering a
+highly robust and computationally accessible foundation for real-world rearrange-
+ment tasks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/ Abstract. -->
+        </div>
+    </section>
+
+    <section class="section" id="method" style="padding-top:0rem;">
+        <div class="container is-max-desktop">
+
+            <div class="columns is-centered">
+                <div class="column">
+
+                    <h2 class="title is-3 has-text-centered">How Place-Anything-Anywhere Works</h2>
+
+                    <div class="content" style="font-size:1.05rem;">
+
+                        <ol style="max-width:850px; margin:auto;">
+
+                            <li style="margin-bottom:18px;">
+                                <b>Multi-Modal Object and Scene Encoding</b><br>
+                                The first stage of our pipeline maps continuous RGB-D observations into discrete multimodal tokens
+                                for the source object and target scene. Both inputs are processed using parallel encoders composed
+                                of a frozen DINOv2 backbone for visual semantics and PointNet++ for local geometry.
+                            </li>
+
+
+                            <li style="margin-bottom:18px;">
+                                <b>Language Conditioning</b><br>
+                                To convert the natural language instruction L into actionable geometric constraints, we factorize the
+                                language into three complementary streams
+
+                                <ul style="margin-top:8px;">
+
+                                    <li>
+                                        <b>Grounded sequence features:</b>
+                                        A frozen T5 encoder provides contextualized language features,
+                                        while a lightweight LLM extracts the source object, anchor objects, and relation spans. Instruction
+                                        tokens attend to the contextualized scene representation T_scene to form a grounded language memory
+                                        T_lang ∈ R^  N_L × D (where N_L is the instruction length). Simultaneously, the A extracted anchor
+                                        objects are grounded to yield anchor tokens T_anchor ∈ R^A×D .
+                                    </li>
+
+                                    <li>
+                                        <b>Continuous relation conditioning & discrete spatial embeddings:</b>
+                                        Relation spans are aggregated
+                                        into a continuous relation vector R_cond ∈ R^  D and anchor-specific embeddings R_rel ∈ R^ A×D . These
+                                        provide both global and structural spatial priors for subsequent Q-Former reasoning. Together, T_lang , R_cond , and R_rel isolate semantic identity from geometric intent to enable language-
+                                        guided spatial reasoning.
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+                            <li>
+                                <b>Q-Former</b><br>
+                                After geometric parsing and language grounding, the network must integrate scene geometry, object
+                                context, and spatial intent into a compact representation suitable for placement prediction. To this
+                                end, we employ a Relational Querying Transformer (Q-Former) bottleneck that compresses
+                                multimodal context into a latent action representation.
+                            </li>
+
+                            <li>
+                                <b>Placement Prediction Head</b><br>
+                                The final stage of Place-Anything-Anywhere maps the distilled action latent z into an actionable
+                                placement transformation. Rather than generating pixel-level futures, which often suffer from ge-
+                                ometric distortion and scale inconsistencies, we formulate goal generation as a continuous pose
+                                prediction problem in 3D space. The latent vector z is processed by an MLP translation head that predicts
+                                a 3D displacement vector ∆t ∈ R^3 .
+                                To promote spatial generalization across diverse scenes, the network predicts an anchor-relative
+                                offset rather than an absolute world coordinate.
+                            </li>
+
+                        </ol>
+
+                        
+                    </div>
+                    
+                    <div class="hero-body" style="padding-top: 1rem; margin-top: 0%;">
+
+                <!-- <video style="border: 3px solid #000; border-radius: 8px;" id="teaser" controls autoplay loop playsinline height="100%">
+                    <source src="./static/imgs/video.mp4" type="video/mp4">
+                </video> -->
+
+                <img src="./static/imgs/arch2.jpg" alt="Pipeline Overview" style="width:100%; height:auto;">
+
+                <p style="max-width:900px; margin:auto; margin-top:15px; text-align:justify;">
+                    <b>Language-conditioned relational reasoning:</b> The instruction is decomposed into grounded lan-
+guage features, a continuous relation prior, and discrete spatial relation embeddings. The relation prior condi-
+tions the learnable Q-Former queries, while the relation embeddings are fused with grounded anchor tokens. A
+two-stage Q-Former first reasons over visual-geometric context and then grounded language memory, produc-
+ing a compact latent bottleneck used for placement prediction.
+                </p>
+            </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="video" style="padding-top: 0rem;">
+        <div class="container is-max-desktop">
+            <!-- video. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column ">
+                    <h2 class="title is-3">Video</h2>
+                    <video style="border: 3px solid #000; border-radius: 8px;" id="teaser" controls autoplay loop
+                        playsinline height="100%">
+                        <source src="./static/imgs/video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <!--/ video. -->
+        </div>
+    </section>
+
+    <section class="section" id="results">
+        <div class="container is-max-desktop">
+
+            <div class="columns is-centered">
+                <div class="column">
+
+                    <h2 class="title is-3 has-text-centered">Test Results</h2>
+
+                    <!-- Task Buttons -->
+                    <div class="buttons is-centered" style="margin-bottom:20px;">
+                        <button class="button is-medium is-primary task-btn" data-task="task1">Task 1</button>
+                        <button class="button is-medium task-btn" data-task="task2">Task 2</button>
+                        <button class="button is-medium task-btn" data-task="task3">Task 3</button>
+                        <button class="button is-medium task-btn" data-task="task4">Task 4</button>
+                        <button class="button is-medium task-btn" data-task="task5">Task 5</button>
+                    </div>
+
+                    <!-- Task Instruction -->
+                    <p id="taskInstruction" class="has-text-centered" style="margin-bottom:25px; font-size:1.1rem;">
+                        Place the <span style="color:purple; font-weight:600;">spice shaker</span> to the
+                        <span style="color:blue; font-weight:600;">left of the bottle of chocolate</span> on the bookcase.
+                    </p>
+
+
+                    <div class="tab-pane" id="imggen" style="display:block;">
+                        <div class="columns is-vcentered">
+                            <!-- LEFT: Inputs -->
+                            <div class="column is-4">
+                                <div style="margin-bottom:20px;">
+                                    <p class="has-text-centered">
+                                        <b>Object Image:</b>
+                                    </p>
+                                    <img id="objImage" src="./static/results/task1/obj.png"
+                                        style="width:100%; border-radius:6px;">
+                                </div>
+                                <div>
+                                    <p class="has-text-centered">
+                                        <b>Scene Image:</b>
+                                    </p>
+                                    <img id="rgbImage" src="./static/results/task1/rgb.png"
+                                        style="width:100%; border-radius:6px;">
+                                </div>
+                            </div>
+                            <!-- RIGHT: Output -->
+                            <div class="column is-8 has-text-centered">
+                                <p style="margin-bottom:10px;">
+                                    <b>Object Placed:</b>
+                                </p>
+                                <img id="genImage" src="./static/results/task1/gen.png"
+                                    style="width:100%; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.15);">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        const tasks = {
+            task1: {
+                obj: "./static/results/task1/obj.png",
+                rgb: "./static/results/task1/rgb.png",
+                gen: "./static/results/task1/gen.png",
+                text: 'Place the <span style="color:purple;font-weight:600;">spice shaker</span> to the <span style="color:blue;font-weight:600;">left of the bottle of chocolate</span> on the bookcase.',
+            },
+            task2: {
+                obj: "./static/results/task2/obj.png",
+                rgb: "./static/results/task2/rgb.png",
+                gen: "./static/results/task2/gen.png",
+                text: 'Place the <span style="color:red;font-weight:600;">bottle of medicines</span> to the <span style="color:green;font-weight:600;">back of the bottle of pizza sauce</span> on the cabinet.',
+            },
+            task3: {
+                obj: "./static/results/task3/obj.png",
+                rgb: "./static/results/task3/rgb.png",
+                gen: "./static/results/task3/gen.png",
+                text: 'Place the <span style="color:orange;font-weight:600;">bottle of coffee</span> on the <span style="color:blue;font-weight:600;">coffee table</span>.',
+            },
+            task4: {
+                obj: "./static/results/task4/obj.png",
+                rgb: "./static/results/task4/rgb.png",
+                gen: "./static/results/task4/gen.png",
+                text: 'Place the <span style="color:purple;font-weight:600;">ashtray</span> to the <span style="color:green;font-weight:600;">right of the calculator</span> on the table.',
+            },
+            task5: {
+                obj: "./static/results/task5/obj.png",
+                rgb: "./static/results/task5/rgb.png",
+                gen: "./static/results/task5/gen.png",
+                text: 'Place the <span style="color:red;font-weight:600;">bottle of shampoo</span> on the <span style="color:blue;font-weight:600;">table</span>.',
+            }
+        };
+
+        document.querySelectorAll(".task-btn").forEach(btn => {
+            btn.addEventListener("click", function () {
+
+                document.querySelectorAll(".task-btn").forEach(b => b.classList.remove("is-primary"));
+                this.classList.add("is-primary");
+
+                const t = tasks[this.dataset.task];
+
+                document.getElementById("objImage").src = t.obj;
+                document.getElementById("rgbImage").src = t.rgb;
+                document.getElementById("genImage").src = t.gen;
+
+                document.getElementById("taskInstruction").innerHTML = t.text;
+
+                loadPointCloud(t.flow);
+
+                // RESET TAB TO IMAGE GENERATION
+                document.querySelectorAll(".tabs li").forEach(t => t.classList.remove("is-active"));
+                document.querySelector('.tabs li[data-tab="imggen"]').classList.add("is-active");
+
+                document.querySelectorAll(".tab-pane").forEach(p => p.style.display = "none");
+                document.getElementById("imggen").style.display = "block";
+
+            });
+        });
+    </script>
 
     <footer class="footer">
         <div class="container">
